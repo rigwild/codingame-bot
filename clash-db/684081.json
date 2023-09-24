@@ -1,0 +1,267 @@
+{
+  "clash": {
+    "globalRemainingTime": 788451,
+    "publicHandle": "32889022fdb892a7b92869a1d02e034fa835273",
+    "durationType": "SHORT",
+    "mode": "FASTEST",
+    "publicClash": true,
+    "players": [
+      {
+        "codingamerId": 5555163,
+        "codingamerNickname": "vitaliy134",
+        "codingamerHandle": "5819f49c367df0128ad9b772af5261803615555",
+        "score": 100,
+        "duration": 0,
+        "status": "OWNER",
+        "testSessionStatus": "COMPLETED",
+        "languageId": "C++",
+        "rank": 1,
+        "position": 1,
+        "solutionShared": true,
+        "testSessionHandle": "62549965aea8a565c1bd1f0535ee6970924e299b",
+        "submissionId": 31919506
+      },
+      {
+        "codingamerId": 5402134,
+        "codingamerNickname": "SuperVolek",
+        "codingamerHandle": "7541ba0eb9a031c24c28e7d133df1fdf4312045",
+        "codingamerAvatarId": 112159384223743,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 2,
+        "position": 2,
+        "testSessionHandle": "625499661d774348e722de358bfdebaf363b4cac"
+      },
+      {
+        "codingamerId": 5645069,
+        "codingamerNickname": "MartoHackeer",
+        "codingamerHandle": "8c65f016b9d3c7dc2ed7bbf013e29b8c9605465",
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 2,
+        "position": 3,
+        "testSessionHandle": "62549967484eb96a2184eec46f7cef37eb39b9af"
+      }
+    ]
+  },
+  "testType": "CLASH",
+  "currentQuestion": {
+    "question": {
+      "testCases": [
+        {
+          "index": 1,
+          "inputBinaryId": 64698945047544,
+          "outputBinaryId": 64698965058715,
+          "label": "Simple"
+        },
+        {
+          "index": 2,
+          "inputBinaryId": 64698982078927,
+          "outputBinaryId": 64699004123486,
+          "label": "Easy 2"
+        },
+        {
+          "index": 3,
+          "inputBinaryId": 64699025722122,
+          "outputBinaryId": 64699044222421,
+          "label": "Medium 2"
+        },
+        {
+          "index": 4,
+          "inputBinaryId": 64699068034818,
+          "outputBinaryId": 64699082897445,
+          "label": "Very Hard"
+        }
+      ],
+      "availableLanguages": [
+        {
+          "id": "Bash",
+          "name": "Bash"
+        },
+        {
+          "id": "C",
+          "name": "C"
+        },
+        {
+          "id": "C#",
+          "name": "C#"
+        },
+        {
+          "id": "C++",
+          "name": "C++"
+        },
+        {
+          "id": "Clojure",
+          "name": "Clojure"
+        },
+        {
+          "id": "D",
+          "name": "D"
+        },
+        {
+          "id": "Dart",
+          "name": "Dart"
+        },
+        {
+          "id": "F#",
+          "name": "F#"
+        },
+        {
+          "id": "Go",
+          "name": "Go"
+        },
+        {
+          "id": "Groovy",
+          "name": "Groovy"
+        },
+        {
+          "id": "Haskell",
+          "name": "Haskell"
+        },
+        {
+          "id": "Java",
+          "name": "Java"
+        },
+        {
+          "id": "Javascript",
+          "name": "JavaScript"
+        },
+        {
+          "id": "Kotlin",
+          "name": "Kotlin"
+        },
+        {
+          "id": "Lua",
+          "name": "Lua"
+        },
+        {
+          "id": "ObjectiveC",
+          "name": "Objective-C"
+        },
+        {
+          "id": "OCaml",
+          "name": "OCaml"
+        },
+        {
+          "id": "Pascal",
+          "name": "Pascal"
+        },
+        {
+          "id": "Perl",
+          "name": "Perl"
+        },
+        {
+          "id": "PHP",
+          "name": "PHP"
+        },
+        {
+          "id": "Python3",
+          "name": "Python 3"
+        },
+        {
+          "id": "Ruby",
+          "name": "Ruby"
+        },
+        {
+          "id": "Rust",
+          "name": "Rust"
+        },
+        {
+          "id": "Scala",
+          "name": "Scala"
+        },
+        {
+          "id": "Swift",
+          "name": "Swift"
+        },
+        {
+          "id": "TypeScript",
+          "name": "TypeScript"
+        },
+        {
+          "id": "VB.NET",
+          "name": "VB.NET"
+        }
+      ],
+      "stubGenerator": "read a:int\nread d:int\nread n:int\nwrite Arithmetic Progression n-th Term",
+      "id": 684081,
+      "initialId": 684081,
+      "type": "MULTIPLE_LANGUAGES",
+      "statement": "<div class=\"statement-body\">\n<div class=\"statement-section statement-goal\">\n   <h2><span class=\"icon icon-goal\">&nbsp;</span><span>Goal </span></h2>\n   <span class=\"question-statement\">You have to find the n-th term of  arithmetic progression.<br>A is the first term of the arithmetic progression.<br>D is the common difference of the arithmetic progression.<br>'N' stands for the term number</span>\n</div>\n<div class=\"statement-section statement-protocol\">\n   <div class=\"blk\">\n      <div class=\"title\">Input</div>\n      <div class=\"question-statement-input\"><strong>Line 1</strong> A is a positive integer.<br><strong>Line 2</strong> D is a positive integer.<br><strong>Line 3</strong> N is a positive integer and stand for term number.</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Output</div>\n      <div class=\"question-statement-output\">Output the n-th term of  arithmetic progression</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Constraints</div>\n      <div class=\"question-statement-constraints\">1&lt;=A&lt;=100000<br>1&lt;=D&lt;=100000<br>1&lt;=N&lt;=100000</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Example</div>\n      <div class=\"statement-inout\">\n         <div class=\"statement-inout-in\">\n            <div class=\"title\">Input</div>\n            <pre class=\"question-statement-example-in\">1\n2\n1</pre>\n         </div>\n         <div class=\"statement-inout-out\">\n            <div class=\"title\">Output</div>\n            <pre class=\"question-statement-example-out\">1</pre>\n         </div>\n      </div>\n   </div>\n</div>",
+      "duration": 0,
+      "userId": 4279233,
+      "contribution": {
+        "moderators": [
+          {
+            "userId": 1577411,
+            "pseudo": "GW",
+            "publicHandle": "368eeb33cd7d3793630c9b9c2d402c141147751",
+            "enable": false,
+            "avatar": 7678064691880,
+            "cover": 7928365557579
+          },
+          {
+            "userId": 4251195,
+            "pseudo": "Smelty",
+            "publicHandle": "3e8be48881c567e44ca665a9ecf764235911524",
+            "enable": false,
+            "avatar": 62842162200886,
+            "cover": 62800082014922
+          },
+          {
+            "userId": 1800997,
+            "pseudo": "TheProCode",
+            "publicHandle": "5dc8e670d95ba488f67950846ea301d07990081",
+            "enable": false,
+            "avatar": 95629881461770,
+            "cover": 95629989221490
+          }
+        ],
+        "type": "CLASHOFCODE",
+        "status": "ACCEPTED"
+      },
+      "contributor": {
+        "userId": 4279233,
+        "pseudo": "Alex-1",
+        "publicHandle": "d47d3f7827072735eb2f4ecb158d6c9c3329724",
+        "enable": false,
+        "avatar": 65699047672930,
+        "cover": 65699760033427
+      },
+      "index": 0,
+      "mode": "SHORTEST_CODE",
+      "title": "Arithmetic Progression"
+    },
+    "answer": {}
+  },
+  "direct": false,
+  "questions": [
+    {
+      "questionId": 684081,
+      "title": "Arithmetic Progression",
+      "hasResult": false
+    }
+  ],
+  "testSessionId": 62549966,
+  "testSessionHandle": "625499661d774348e722de358bfdebaf363b4cac",
+  "needAccount": true,
+  "shareable": true,
+  "userId": 5402134,
+  "showReplayPrompt": false,
+  "solutions": [
+    {
+      "pseudo": "vitaliy134",
+      "testSessionQuestionSubmissionId": 31919506,
+      "programmingLanguageId": "C++",
+      "creationTime": 1695574629469,
+      "codingamerId": 5555163,
+      "codingamerHandle": "5819f49c367df0128ad9b772af5261803615555",
+      "code": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\n/**\n * Auto-generated code below aims at helping you parse\n * the standard input according to the problem statement.\n **/\n\nint main()\n{\n    int a;\n    cin >> a; cin.ignore();\n    int d;\n    cin >> d; cin.ignore();\n    int n;\n    cin >> n; cin.ignore();\n\n    // Write an answer using cout. DON'T FORGET THE \"<< endl\"\n    // To debug: cerr << \"Debug messages...\" << endl;\n\n    cout << a + (n-1) * d << endl;\n}",
+      "votableId": 31035578,
+      "commentableId": 30896611,
+      "shared": true
+    }
+  ]
+}

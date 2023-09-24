@@ -1,0 +1,312 @@
+{
+  "clash": {
+    "globalRemainingTime": 880866,
+    "publicHandle": "32888982e5f25f52793a1fa0ffccbb5a2c8a15e",
+    "durationType": "SHORT",
+    "mode": "REVERSE",
+    "publicClash": true,
+    "players": [
+      {
+        "codingamerId": 1470927,
+        "codingamerNickname": "MisterQuidam",
+        "codingamerHandle": "abb880d8996ed32ec772ed5b752073a27290741",
+        "codingamerAvatarId": 89056262115378,
+        "duration": 0,
+        "status": "OWNER",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 1,
+        "testSessionHandle": "625499259069c6843a97e0828b9cc3790d19ca04"
+      },
+      {
+        "codingamerId": 5525989,
+        "codingamerNickname": "totallyrad",
+        "codingamerHandle": "65292def16ff29b2e0b8e0b6d95e42769895255",
+        "codingamerAvatarId": 112138462140634,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 2,
+        "testSessionHandle": "62549926b3a202902d2cf9c0deef730005aab067"
+      },
+      {
+        "codingamerId": 5402134,
+        "codingamerNickname": "SuperVolek",
+        "codingamerHandle": "7541ba0eb9a031c24c28e7d133df1fdf4312045",
+        "codingamerAvatarId": 112159384223743,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 3,
+        "testSessionHandle": "625499279452c3052b6adf10cf8011a7d006c83e"
+      },
+      {
+        "codingamerId": 5426571,
+        "codingamerNickname": "grosssieb",
+        "codingamerHandle": "5b7e0505d58bb0f64b2b678b5bb241ef1756245",
+        "codingamerAvatarId": 108419449824664,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 4,
+        "testSessionHandle": "62549928117f11539c8b085ee462c2772ab4d76b"
+      },
+      {
+        "codingamerId": 5699305,
+        "codingamerNickname": "Hijon",
+        "codingamerHandle": "c4696c357c2d5b1100c9f13f0686ac855039965",
+        "codingamerAvatarId": 111993606560895,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 5,
+        "testSessionHandle": "6254992973f373fa9faa4941208df3b8e95ee13e"
+      },
+      {
+        "codingamerId": 5708716,
+        "codingamerNickname": "Thorus31",
+        "codingamerHandle": "2eb0dd92665bb71be67254fbf54b352e6178075",
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 6,
+        "testSessionHandle": "62549930bb3ceedcbfd4521869093d08576254d4"
+      },
+      {
+        "codingamerId": 5719145,
+        "codingamerNickname": "notAnyIdea",
+        "codingamerHandle": "4ee9fcfbfdda358417163e97c626ed3d5419175",
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 7,
+        "testSessionHandle": "6254993127ab87b0e43fcc8e4ca60927e75bc164"
+      }
+    ]
+  },
+  "testType": "CLASH",
+  "currentQuestion": {
+    "question": {
+      "testCases": [
+        {
+          "index": 1,
+          "inputBinaryId": 112122169042446,
+          "outputBinaryId": 112122188175194
+        },
+        {
+          "index": 2,
+          "inputBinaryId": 112122207682678,
+          "outputBinaryId": 112122226929772
+        },
+        {
+          "index": 3,
+          "inputBinaryId": 112122248551604,
+          "outputBinaryId": 112122269934463
+        },
+        {
+          "index": 4,
+          "inputBinaryId": 112122285359986,
+          "outputBinaryId": 112122302524658
+        },
+        {
+          "index": 5,
+          "inputBinaryId": 112122320003296,
+          "outputBinaryId": 112122346405878
+        }
+      ],
+      "availableLanguages": [
+        {
+          "id": "Bash",
+          "name": "Bash"
+        },
+        {
+          "id": "C",
+          "name": "C"
+        },
+        {
+          "id": "C#",
+          "name": "C#"
+        },
+        {
+          "id": "C++",
+          "name": "C++"
+        },
+        {
+          "id": "Clojure",
+          "name": "Clojure"
+        },
+        {
+          "id": "D",
+          "name": "D"
+        },
+        {
+          "id": "Dart",
+          "name": "Dart"
+        },
+        {
+          "id": "F#",
+          "name": "F#"
+        },
+        {
+          "id": "Go",
+          "name": "Go"
+        },
+        {
+          "id": "Groovy",
+          "name": "Groovy"
+        },
+        {
+          "id": "Haskell",
+          "name": "Haskell"
+        },
+        {
+          "id": "Java",
+          "name": "Java"
+        },
+        {
+          "id": "Javascript",
+          "name": "JavaScript"
+        },
+        {
+          "id": "Kotlin",
+          "name": "Kotlin"
+        },
+        {
+          "id": "Lua",
+          "name": "Lua"
+        },
+        {
+          "id": "ObjectiveC",
+          "name": "Objective-C"
+        },
+        {
+          "id": "OCaml",
+          "name": "OCaml"
+        },
+        {
+          "id": "Pascal",
+          "name": "Pascal"
+        },
+        {
+          "id": "Perl",
+          "name": "Perl"
+        },
+        {
+          "id": "PHP",
+          "name": "PHP"
+        },
+        {
+          "id": "Python3",
+          "name": "Python 3"
+        },
+        {
+          "id": "Ruby",
+          "name": "Ruby"
+        },
+        {
+          "id": "Rust",
+          "name": "Rust"
+        },
+        {
+          "id": "Scala",
+          "name": "Scala"
+        },
+        {
+          "id": "Swift",
+          "name": "Swift"
+        },
+        {
+          "id": "TypeScript",
+          "name": "TypeScript"
+        },
+        {
+          "id": "VB.NET",
+          "name": "VB.NET"
+        }
+      ],
+      "stubGenerator": "read ciphertext:string(100)\nwrite plaintext",
+      "id": 817202,
+      "initialId": 817202,
+      "type": "MULTIPLE_LANGUAGES",
+      "statement": "<div class=\"statement_wrapping_div\" style=\"position: relative;\">\n<style type=\"text/css\">.statement_wrapping_div, .statement {font-size: 14px;font-weight: 400;}  \n.statement_wrapping_div {margin-bottom: 10px;}\n.statement_wrapping_div ul {padding-left: 40px;}\n.statement {background-color:rgba(255, 255, 255, 0.85);padding: 20px;padding-top:0px;}\ncode, span.const {display:inline-block;font-family:Inconsolata,consolas,monospace;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;background-color:#18a1ea;white-space: nowrap;margin-right:2px;color: white;}\nspan.var {display: inline-block;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:2px;background-color:#f2dd00;white-space:nowrap;margin-left:1px;margin-right:2px;color:black;}\n.stat_mid_title {font-weight:700;margin-bottom:5px;}\n.protocol_title{color:#ffd200;}\n.cross-statementBlock{position:relative;}\n</style>\n<div class=\"stat_mid_title\">The program:</div>\nThe game mode is: REVERSE. You do not have access to the statement.</div>",
+      "duration": 0,
+      "userId": 2491616,
+      "contribution": {
+        "moderators": [
+          {
+            "userId": 2424099,
+            "pseudo": "democat",
+            "publicHandle": "472d2b574f90e108bb186701c9de3ff49904242",
+            "enable": false,
+            "avatar": 111626184197315,
+            "cover": 17013741823061
+          },
+          {
+            "userId": 3479792,
+            "pseudo": "StepBack13",
+            "publicHandle": "da2fe4fbf3c0ab008c6dcf304920ec602979743",
+            "enable": false,
+            "avatar": 33990586394707
+          },
+          {
+            "userId": 3225493,
+            "pseudo": "Raznoo",
+            "publicHandle": "40496f5d9a1d20857e897d561a8cdb8c3945223",
+            "enable": false,
+            "avatar": 111295100446192,
+            "cover": 111549384583508
+          }
+        ],
+        "type": "CLASHOFCODE",
+        "status": "ACCEPTED"
+      },
+      "contributor": {
+        "userId": 2491616,
+        "pseudo": "abt8601",
+        "publicHandle": "a82453c7a4a92ac86cba6e27177958186161942",
+        "enable": false,
+        "avatar": 98797144337932,
+        "cover": 93493086705050
+      },
+      "index": 0,
+      "mode": "REVERSE",
+      "title": "Cracking Caesar's cypher with \"the\""
+    },
+    "answer": {}
+  },
+  "direct": false,
+  "questions": [
+    {
+      "questionId": 817202,
+      "title": "Cracking Caesar's cypher with \"the\"",
+      "hasResult": false
+    }
+  ],
+  "testSessionId": 62549927,
+  "testSessionHandle": "625499279452c3052b6adf10cf8011a7d006c83e",
+  "needAccount": true,
+  "shareable": true,
+  "userId": 5402134,
+  "showReplayPrompt": false,
+  "solutions": [
+    {
+      "pseudo": "MisterQuidam",
+      "testSessionQuestionSubmissionId": 31919540,
+      "programmingLanguageId": "Ruby",
+      "creationTime": 1695574933618,
+      "avatar": 89056262115378,
+      "codingamerId": 1470927,
+      "codingamerHandle": "abb880d8996ed32ec772ed5b752073a27290741",
+      "code": "def f(t,n)\nt.chars.map{_1=~/[A-Z]/?((_1.ord-65+n)%26+65).chr: _1}*''\nend\n$><<f(t=gets.chomp,(0..25).max_by{f(t,_1).split.count\"THE\"})",
+      "votableId": 31035612,
+      "commentableId": 30896645,
+      "shared": true
+    }
+  ]
+}

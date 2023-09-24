@@ -1,0 +1,370 @@
+{
+  "clash": {
+    "globalRemainingTime": 890805,
+    "publicHandle": "32889091b9d60e6c2d0b481a5ed177113c41c0c",
+    "durationType": "SHORT",
+    "mode": "SHORTEST",
+    "publicClash": true,
+    "players": [
+      {
+        "codingamerId": 5724002,
+        "codingamerNickname": "iamouad9",
+        "codingamerHandle": "09f7e90be858eb3b4628088f4ab5bee32004275",
+        "duration": 0,
+        "status": "OWNER",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 1,
+        "testSessionHandle": "625500734fc52a6d95c7f9abe69b1fc5f36581ce"
+      },
+      {
+        "codingamerId": 5402134,
+        "codingamerNickname": "SuperVolek",
+        "codingamerHandle": "7541ba0eb9a031c24c28e7d133df1fdf4312045",
+        "codingamerAvatarId": 112159384223743,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 2,
+        "testSessionHandle": "625500743c3815517322cb3bac369de2bd8fb2b7"
+      },
+      {
+        "codingamerId": 5555163,
+        "codingamerNickname": "vitaliy134",
+        "codingamerHandle": "5819f49c367df0128ad9b772af5261803615555",
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 3,
+        "testSessionHandle": "625500755c8fb4b846c83aa3cb328605b4569445"
+      },
+      {
+        "codingamerId": 5702630,
+        "codingamerNickname": "Elek0",
+        "codingamerHandle": "fa5f631cfb92fc3ae9785673d3db98210362075",
+        "codingamerAvatarId": 111581549835846,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 4,
+        "testSessionHandle": "625500760eae201ed658a76b19501f3bad9978fc"
+      },
+      {
+        "codingamerId": 5576036,
+        "codingamerNickname": "spartan97",
+        "codingamerHandle": "724978383dda873b9999ac9718b266186306755",
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 5,
+        "testSessionHandle": "625500776a2974017dcf3fcd862a8c88b59c4488"
+      },
+      {
+        "codingamerId": 5717729,
+        "codingamerNickname": "bepacfic",
+        "codingamerHandle": "2f728469f08edcaa7312baf9577730b69277175",
+        "codingamerAvatarId": 112085704943149,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 6,
+        "testSessionHandle": "62550078e8e0f7cc0ae004f812b181b0080c8077"
+      },
+      {
+        "codingamerId": 5690210,
+        "codingamerNickname": "Skillsonly",
+        "codingamerHandle": "f20317ab686271a4b55cc11110d466d00120965",
+        "codingamerAvatarId": 112030966551418,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 7,
+        "testSessionHandle": "62550079381ddb67ec416391bb180e527a7ea8cc"
+      },
+      {
+        "codingamerId": 5699305,
+        "codingamerNickname": "Hijon",
+        "codingamerHandle": "c4696c357c2d5b1100c9f13f0686ac855039965",
+        "codingamerAvatarId": 111993606560895,
+        "duration": 0,
+        "status": "STANDARD",
+        "testSessionStatus": "READY",
+        "rank": 1,
+        "position": 8,
+        "testSessionHandle": "62550080d8a83bb069db63b5879753bd363d1f6d"
+      }
+    ]
+  },
+  "testType": "CLASH",
+  "currentQuestion": {
+    "question": {
+      "testCases": [
+        {
+          "index": 1,
+          "inputBinaryId": 39181783753536,
+          "outputBinaryId": 39181805618057,
+          "label": "Test 1"
+        },
+        {
+          "index": 2,
+          "inputBinaryId": 39181828842229,
+          "outputBinaryId": 39181843964399,
+          "label": "Test 2"
+        },
+        {
+          "index": 3,
+          "inputBinaryId": 39181861807547,
+          "outputBinaryId": 39181884817325,
+          "label": "Test 3"
+        },
+        {
+          "index": 4,
+          "inputBinaryId": 39181902555839,
+          "outputBinaryId": 39181924778140,
+          "label": "Test 4"
+        },
+        {
+          "index": 5,
+          "inputBinaryId": 39181949337027,
+          "outputBinaryId": 39181965909893,
+          "label": "Test 5"
+        }
+      ],
+      "availableLanguages": [
+        {
+          "id": "Bash",
+          "name": "Bash"
+        },
+        {
+          "id": "C",
+          "name": "C"
+        },
+        {
+          "id": "C#",
+          "name": "C#"
+        },
+        {
+          "id": "C++",
+          "name": "C++"
+        },
+        {
+          "id": "Clojure",
+          "name": "Clojure"
+        },
+        {
+          "id": "D",
+          "name": "D"
+        },
+        {
+          "id": "Dart",
+          "name": "Dart"
+        },
+        {
+          "id": "F#",
+          "name": "F#"
+        },
+        {
+          "id": "Go",
+          "name": "Go"
+        },
+        {
+          "id": "Groovy",
+          "name": "Groovy"
+        },
+        {
+          "id": "Haskell",
+          "name": "Haskell"
+        },
+        {
+          "id": "Java",
+          "name": "Java"
+        },
+        {
+          "id": "Javascript",
+          "name": "JavaScript"
+        },
+        {
+          "id": "Kotlin",
+          "name": "Kotlin"
+        },
+        {
+          "id": "Lua",
+          "name": "Lua"
+        },
+        {
+          "id": "ObjectiveC",
+          "name": "Objective-C"
+        },
+        {
+          "id": "OCaml",
+          "name": "OCaml"
+        },
+        {
+          "id": "Pascal",
+          "name": "Pascal"
+        },
+        {
+          "id": "Perl",
+          "name": "Perl"
+        },
+        {
+          "id": "PHP",
+          "name": "PHP"
+        },
+        {
+          "id": "Python3",
+          "name": "Python 3"
+        },
+        {
+          "id": "Ruby",
+          "name": "Ruby"
+        },
+        {
+          "id": "Rust",
+          "name": "Rust"
+        },
+        {
+          "id": "Scala",
+          "name": "Scala"
+        },
+        {
+          "id": "Swift",
+          "name": "Swift"
+        },
+        {
+          "id": "TypeScript",
+          "name": "TypeScript"
+        },
+        {
+          "id": "VB.NET",
+          "name": "VB.NET"
+        }
+      ],
+      "stubGenerator": "read T:string(17)\nwrite answer",
+      "id": 595941,
+      "initialId": 595941,
+      "type": "MULTIPLE_LANGUAGES",
+      "statement": "<div class=\"statement-body\">\n<div class=\"statement-section statement-goal\">\n   <h2><span class=\"icon icon-goal\">&nbsp;</span><span>Goal </span></h2>\n   <span class=\"question-statement\">You must convert given binary into hexadecimal.</span>\n</div>\n<div class=\"statement-section statement-protocol\">\n   <div class=\"blk\">\n      <div class=\"title\">Input</div>\n      <div class=\"question-statement-input\">A single binary number <var>T</var> (0b followed by a string of 1's and 0's). The string length is <var>N</var>.</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Output</div>\n      <div class=\"question-statement-output\">A hexadecimal representation of the binary number (0x followed by a string of chars in 0123456789abcdef)</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Constraints</div>\n      <div class=\"question-statement-constraints\">1&le;<var>N</var>&le;15</div>\n   </div>\n   <div class=\"blk\">\n      <div class=\"title\">Example</div>\n      <div class=\"statement-inout\">\n         <div class=\"statement-inout-in\">\n            <div class=\"title\">Input</div>\n            <pre class=\"question-statement-example-in\">0b1010</pre>\n         </div>\n         <div class=\"statement-inout-out\">\n            <div class=\"title\">Output</div>\n            <pre class=\"question-statement-example-out\">0xa</pre>\n         </div>\n      </div>\n   </div>\n</div>",
+      "duration": 0,
+      "userId": 1197393,
+      "contribution": {
+        "moderators": [
+          {
+            "userId": 181089,
+            "pseudo": "[CG]OlogN",
+            "publicHandle": "76045133378b06b2fdaa015c7d00ed46980181",
+            "enable": false,
+            "avatar": 3558411326988,
+            "cover": 5066010996187
+          },
+          {
+            "userId": 1122412,
+            "pseudo": "TheNinja",
+            "publicHandle": "796ed19c638a4cbd9cf6526be9cf56542142211",
+            "enable": false,
+            "avatar": 3823739809641,
+            "cover": 2754242453763
+          }
+        ],
+        "type": "CLASHOFCODE",
+        "status": "ACCEPTED"
+      },
+      "contributor": {
+        "userId": 1197393,
+        "pseudo": "SAURABH",
+        "publicHandle": "80d9cc245a88709af4b5c2b5952f98973937911",
+        "enable": false,
+        "avatar": 4027632727159,
+        "cover": 4027971178549
+      },
+      "index": 0,
+      "mode": "SHORTEST_CODE",
+      "title": "Binary to Hex"
+    },
+    "answer": {}
+  },
+  "direct": false,
+  "questions": [
+    {
+      "questionId": 595941,
+      "title": "Binary to Hex",
+      "hasResult": false
+    }
+  ],
+  "testSessionId": 62550074,
+  "testSessionHandle": "625500743c3815517322cb3bac369de2bd8fb2b7",
+  "needAccount": true,
+  "shareable": true,
+  "userId": 5402134,
+  "showReplayPrompt": false,
+  "solutions": [
+    {
+      "pseudo": "vitaliy134",
+      "testSessionQuestionSubmissionId": 31919576,
+      "programmingLanguageId": "Python3",
+      "creationTime": 1695575169781,
+      "codingamerId": 5555163,
+      "codingamerHandle": "5819f49c367df0128ad9b772af5261803615555",
+      "code": "print(hex(int(input(),2)))\n",
+      "votableId": 31035649,
+      "commentableId": 30896681,
+      "shared": true
+    },
+    {
+      "pseudo": "Elek0",
+      "testSessionQuestionSubmissionId": 31919560,
+      "programmingLanguageId": "Python3",
+      "creationTime": 1695575092237,
+      "avatar": 111581549835846,
+      "codingamerId": 5702630,
+      "codingamerHandle": "fa5f631cfb92fc3ae9785673d3db98210362075",
+      "code": "print(hex(int(input()[2:],2)))",
+      "votableId": 31035632,
+      "commentableId": 30896665,
+      "shared": true
+    },
+    {
+      "pseudo": "Skillsonly",
+      "testSessionQuestionSubmissionId": 31919641,
+      "programmingLanguageId": "Python3",
+      "creationTime": 1695575633450,
+      "avatar": 112030966551418,
+      "codingamerId": 5690210,
+      "codingamerHandle": "f20317ab686271a4b55cc11110d466d00120965",
+      "code": "print(hex(int(input()[2:],2)))",
+      "votableId": 31035714,
+      "commentableId": 30896746,
+      "shared": true
+    },
+    {
+      "pseudo": "spartan97",
+      "testSessionQuestionSubmissionId": 31919656,
+      "programmingLanguageId": "Java",
+      "creationTime": 1695575803990,
+      "codingamerId": 5576036,
+      "codingamerHandle": "724978383dda873b9999ac9718b266186306755",
+      "code": "import java.util.*;\nclass Solution {\n    public static void main(String args[]) {\n        Scanner in = new Scanner(System.in);\n        String T = Integer.toHexString(Integer.parseInt(in.nextLine().replaceAll(\"0b\", \"\"),2));\n        System.out.println(\"0x\"+T);\n    }\n}",
+      "votableId": 31035729,
+      "commentableId": 30896761,
+      "shared": true
+    },
+    {
+      "pseudo": "iamouad9",
+      "testSessionQuestionSubmissionId": 31919604,
+      "programmingLanguageId": "Python3",
+      "creationTime": 1695575406676,
+      "codingamerId": 5724002,
+      "codingamerHandle": "09f7e90be858eb3b4628088f4ab5bee32004275",
+      "code": "import sys\nimport math\n\n# Auto-generated code below aims at helping you parse\n# the standard input according to the problem statement.\n\nt = input()\nbin_str = t.split('b')[1]\nnum = int(bin_str, 2)\nprint(hex(num))\n\n# Write an answer using print\n# To debug: print(\"Debug messages...\", file=sys.stderr, flush=True)\n\n",
+      "votableId": 31035677,
+      "commentableId": 30896709,
+      "shared": true
+    }
+  ]
+}
