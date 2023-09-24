@@ -3,6 +3,7 @@
 
 import fs from 'fs'
 import { ofetch } from 'ofetch'
+import { MetricsUtils } from './metrics.mjs'
 
 // Hidden user ID with short format like 5102134
 const USER_ID = process.env.USER_ID
@@ -128,6 +129,7 @@ async function discoverThenJoinClashWaitingRoom() {
     seenPublicHandles.add(publicHandle)
     fs.appendFileSync('_public-handles.txt', publicHandle + '\n')
     console.log(`Joined a new clash of code match: ${publicHandle}`)
+    MetricsUtils.codingame_bot_clash_join.inc()
   } catch (error) {
     console.error('Error joining clash', error)
   }
@@ -144,10 +146,17 @@ async function fetchAndSaveClashContent(publicHandle) {
       console.log(`Saving clash content for handle "${publicHandle}" and question "${questionId}"`)
       fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashContent, null, 2))
       fs.appendFileSync('_clash-questions.txt', `${publicHandle}-${questionId}\n`)
+      MetricsUtils.codingame_bot_clash_question_save_new.inc()
     } else {
+      // Check if we have a solution for it
+      /** @type {ClashDetails} */
+      const questionData = JSON.parse(fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8'))
+      const solutionsCount = questionData.solutions ? questionData.solutions.length : 0
       console.log(
-        `Clash content for handle "${publicHandle}" and question "${questionId}" is already in the database, will still look for solutions`
+        `Clash content for handle "${publicHandle}" and question "${questionId}" is already in database ` +
+          `with ${solutionsCount} solutions`
       )
+      MetricsUtils.codingame_bot_clash_question_has_solution.inc()
     }
     return questionId
   } catch (error) {
@@ -158,21 +167,23 @@ async function fetchAndSaveClashContent(publicHandle) {
 async function fetchAndSaveClashSolutions(publicHandle, questionId) {
   try {
     console.log(`Fetching clash solutions for handle "${publicHandle}" and question "${questionId}"`)
-    const solutions = await getClashValidSolutions(publicHandle)
+    const fetchedSolutions = await getClashValidSolutions(publicHandle)
+    MetricsUtils.codingame_bot_clash_solutions_fetch.inc()
 
-    if (solutions.length > 0) {
+    if (fetchedSolutions.length > 0) {
       console.log(
-        `Saving valid clash solutions for handle "${publicHandle}" and question "${questionId}", ${solutions.length} solutions found`
+        `Saving valid clash solutions for handle "${publicHandle}" and question "${questionId}", ${fetchedSolutions.length} solutions found`
       )
       /** @type {ClashDetails} */
-      const content = JSON.parse(
+      const questionData = JSON.parse(
         fs.existsSync(`clash-db/${questionId}.json`) ? fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8') : '{}'
       )
-      const newSolutions = solutions.filter(x => !(content.solutions || []).some(y => y.code === x.code))
+      const newSolutions = fetchedSolutions.filter(x => !(questionData.solutions || []).some(y => y.code === x.code))
       if (newSolutions.length > 0) {
-        content.solutions = [...(content.solutions || []), ...newSolutions]
-        console.log('content', content)
-        fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(content, null, 2))
+        questionData.solutions = [...(questionData.solutions || []), ...newSolutions]
+        console.log('content', questionData)
+        fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(questionData, null, 2))
+        MetricsUtils.codingame_bot_clash_solutions_new.inc()
       } else {
         console.log(
           `No new solutions for handle "${publicHandle}" and question "${questionId}", already have them in database`
@@ -187,8 +198,8 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
 }
 
 ;(async () => {
-  // await fetchAndSaveClashSolutions('3289032Zd5997fed35ede13a65a2cb3d1341d948', '23364')
-  // await wait(1000)
+  // await fetchAndSaveClashSolutions('328930522d1dd43cd06637029a4daad2f686a05', '21823')
+  // await wait(500)
   // return
 
   for (let i = 1; true; i++) {
