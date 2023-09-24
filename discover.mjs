@@ -143,6 +143,7 @@ async function fetchAndSaveClashContent(publicHandle) {
     if (!hasClashContent(questionId)) {
       console.log(`Saving clash content for handle "${publicHandle}" and question "${questionId}"`)
       fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashContent, null, 2))
+      fs.appendFileSync('clash-questions.txt', `${publicHandle}-${questionId}\n`)
     } else {
       console.log(
         `Clash content for handle "${publicHandle}" and question "${questionId}" is already in the database, will still look for solutions`
@@ -167,9 +168,9 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
       const content = JSON.parse(
         fs.existsSync(`clash-db/${questionId}.json`) ? fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8') : '{}'
       )
-      const newSolutions = (content.solutions || []).filter(x => !solutions.some(y => y.code === x.code))
+      const newSolutions = solutions.filter(x => !(content.solutions || []).some(y => y.code === x.code))
       if (newSolutions.length > 0) {
-        content.solutions = [...solutions, ...newSolutions]
+        content.solutions = [...(content.solutions || []), ...newSolutions]
         console.log('content', content)
         fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(content, null, 2))
       } else {
@@ -186,6 +187,8 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
 }
 
 ;(async () => {
+  // await fetchAndSaveClashSolutions('3289022ee60f8b1c48baec59958eae39b420bed', '737259')
+  // return
   for (let i = 1; true; i++) {
     process.stdout.write(`[${i}] `)
 
