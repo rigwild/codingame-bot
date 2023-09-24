@@ -15,7 +15,7 @@ if (!SESSION_TOKEN || !USER_ID) {
 }
 
 const seenPublicHandles = new Set(
-  fs.existsSync('public-handles.txt') ? fs.readFileSync('public-handles.txt', 'utf-8').trim().split('\n') : []
+  fs.existsSync('_public-handles.txt') ? fs.readFileSync('_public-handles.txt', 'utf-8').trim().split('\n') : []
 )
 fs.mkdirSync('clash-db', { recursive: true })
 
@@ -126,7 +126,7 @@ async function discoverThenJoinClashWaitingRoom() {
   try {
     await joinWaitingClash()
     seenPublicHandles.add(publicHandle)
-    fs.appendFileSync('public-handles.txt', publicHandle + '\n')
+    fs.appendFileSync('_public-handles.txt', publicHandle + '\n')
     console.log(`Joined a new clash of code match: ${publicHandle}`)
   } catch (error) {
     console.error('Error joining clash', error)
@@ -143,7 +143,7 @@ async function fetchAndSaveClashContent(publicHandle) {
     if (!hasClashContent(questionId)) {
       console.log(`Saving clash content for handle "${publicHandle}" and question "${questionId}"`)
       fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashContent, null, 2))
-      fs.appendFileSync('clash-questions.txt', `${publicHandle}-${questionId}\n`)
+      fs.appendFileSync('_clash-questions.txt', `${publicHandle}-${questionId}\n`)
     } else {
       console.log(
         `Clash content for handle "${publicHandle}" and question "${questionId}" is already in the database, will still look for solutions`
@@ -179,7 +179,7 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
         )
       }
     } else {
-      console.log(`No valid clash solutions for handle "${publicHandle}" and question "${questionId}"`)
+      console.log(`No 100% pass clash solutions for handle "${publicHandle}" and question "${questionId}"`)
     }
   } catch (error) {
     console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
@@ -187,8 +187,10 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
 }
 
 ;(async () => {
-  // await fetchAndSaveClashSolutions('3289022ee60f8b1c48baec59958eae39b420bed', '737259')
+  // await fetchAndSaveClashSolutions('3289032Zd5997fed35ede13a65a2cb3d1341d948', '23364')
+  // await wait(1000)
   // return
+
   for (let i = 1; true; i++) {
     process.stdout.write(`[${i}] `)
 

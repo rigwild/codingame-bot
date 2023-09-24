@@ -1,3 +1,6 @@
 node_modules
-public-handles.txt
 run.sh
+_logs.txt
+_public-handles.txt
+_clash-questions.txt
+clash-db/*.json
