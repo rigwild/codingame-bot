@@ -77,6 +77,7 @@ interface ClashDetails {
   testSessionId: number
   testSessionHandle: string
   needAccount: boolean
+  solutions?: ClashSubmission[]
 }
 
 interface ClashhReport {

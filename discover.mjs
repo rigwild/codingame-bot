@@ -83,7 +83,7 @@ const getClashValidSolutions = async publicHandle => {
   /** @type {ClashSubmission[]} */
   const solutions = await Promise.all(
     reportData.players
-      .filter(x => x.score === 100)
+      .filter(x => x.score === 100 && x.solutionShared)
       .map(player =>
         ofetch('https://www.codingame.com/services/Solution/findSolution', {
           headers: defaultHeaders,
@@ -156,19 +156,27 @@ async function fetchAndSaveClashContent(publicHandle) {
 
 async function fetchAndSaveClashSolutions(publicHandle, questionId) {
   try {
-    console.log(`Fetching clash solutions for handle "${publicHandle}"`)
+    console.log(`Fetching clash solutions for handle "${publicHandle}" and question "${questionId}"`)
     const solutions = await getClashValidSolutions(publicHandle)
 
     if (solutions.length > 0) {
       console.log(
         `Saving valid clash solutions for handle "${publicHandle}" and question "${questionId}", ${solutions.length} solutions found`
       )
+      /** @type {ClashDetails} */
       const content = JSON.parse(
         fs.existsSync(`clash-db/${questionId}.json`) ? fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8') : '{}'
       )
-      content.solutions = [...(content.solutions || []), ...solutions]
-      console.log('content', content)
-      fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(content, null, 2))
+      const newSolutions = (content.solutions || []).filter(x => !solutions.some(y => y.code === x.code))
+      if (newSolutions.length > 0) {
+        content.solutions = [...solutions, ...newSolutions]
+        console.log('content', content)
+        fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(content, null, 2))
+      } else {
+        console.log(
+          `No new solutions for handle "${publicHandle}" and question "${questionId}", already have them in database`
+        )
+      }
     } else {
       console.log(`No valid clash solutions for handle "${publicHandle}" and question "${questionId}"`)
     }
