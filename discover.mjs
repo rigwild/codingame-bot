@@ -2,7 +2,7 @@
 /// <reference types="./types.d.ts" />
 
 import fs from 'fs'
-import { ofetch } from 'ofetch'
+import { ofetch, FetchError } from 'ofetch'
 import { MetricsUtils } from './metrics.mjs'
 
 // Hidden user ID with short format like 5102134
@@ -33,6 +33,19 @@ const defaultHeaders = {
   'sec-fetch-site': 'same-origin',
   'sec-gpc': '1',
   cookie: `cgSession=${SESSION_TOKEN}; AWSALB=KgA6zqFx1jEeLxlTQdB2GIAl6k04rp05YK1L4d2Qx8ZQC/yzuZiUGjGac9jMU4SF7qn/bZeyx6DKYH2ZRsD6A7eYYDT93pNeqaAGLS27SQiOEjvS3glz4HKQpgLr; AWSALBCORS=KgA6zqFx1jEeLxlTQdB2GIAl6k04rp05YK1L4d2Qx8ZQC/yzuZiUGjGac9jMU4SF7qn/bZeyx6DKYH2ZRsD6A7eYYDT93pNeqaAGLS27SQiOEjvS3glz4HKQpgLr`,
+}
+
+const isHttp4xxError = error => {
+  if (error instanceof FetchError) {
+    const statusCode = error.statusCode || -1
+    return statusCode >= 400 && statusCode < 500
+  }
+  return false
+}
+
+const addErrorMetrics = error => {
+  MetricsUtils.codingame_bot_error.inc()
+  if (isHttp4xxError(error)) MetricsUtils.codingame_bot_error_4xx.inc()
 }
 
 const getPendingClashes = async () => {
@@ -109,6 +122,7 @@ async function discoverThenJoinClashWaitingRoom() {
     clashes = await getPendingClashes()
   } catch (error) {
     console.error('Error fetching clashes', error)
+    addErrorMetrics(error)
     return
   }
 
@@ -130,11 +144,11 @@ async function discoverThenJoinClashWaitingRoom() {
     fs.appendFileSync('_public-handles.txt', publicHandle + '\n')
     console.log(`Joined a new clash of code match: ${publicHandle}`)
     MetricsUtils.codingame_bot_clash_join.inc()
+    return publicHandle
   } catch (error) {
     console.error('Error joining clash', error)
+    addErrorMetrics(error)
   }
-
-  return publicHandle
 }
 
 async function fetchAndSaveClashContent(publicHandle) {
@@ -161,6 +175,7 @@ async function fetchAndSaveClashContent(publicHandle) {
     return questionId
   } catch (error) {
     console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
+    addErrorMetrics(error)
   }
 }
 
@@ -171,9 +186,6 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
     MetricsUtils.codingame_bot_clash_solutions_fetch.inc()
 
     if (fetchedSolutions.length > 0) {
-      console.log(
-        `Saving valid clash solutions for handle "${publicHandle}" and question "${questionId}", ${fetchedSolutions.length} solutions found`
-      )
       /** @type {ClashDetails} */
       const questionData = JSON.parse(
         fs.existsSync(`clash-db/${questionId}.json`) ? fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8') : '{}'
@@ -181,7 +193,10 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
       const newSolutions = fetchedSolutions.filter(x => !(questionData.solutions || []).some(y => y.code === x.code))
       if (newSolutions.length > 0) {
         questionData.solutions = [...(questionData.solutions || []), ...newSolutions]
-        console.log('content', questionData)
+        // console.log('content', questionData)
+        console.log(
+          `Saving valid clash solutions for handle "${publicHandle}" and question "${questionId}", ${fetchedSolutions.length} solutions found, ${newSolutions.length} were not in database`
+        )
         fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(questionData, null, 2))
         MetricsUtils.codingame_bot_clash_solutions_new.inc()
       } else {
@@ -194,13 +209,32 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
     }
   } catch (error) {
     console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
+    addErrorMetrics(error)
+  }
+}
+
+// Process manually if closed the process
+async function _processManually() {
+  const _clashQuestions = (
+    fs.existsSync('_clash-questions_missed.txt') ? fs.readFileSync('_clash-questions_missed.txt', 'utf-8') : ''
+  )
+    .trim()
+    .split('\n')
+    .map(x => x.trim().split('-'))
+
+  for (const [publicHandle, questionId] of _clashQuestions) {
+    await fetchAndSaveClashSolutions(publicHandle, questionId).catch(error => {
+      console.error('Error fetching clash solutions', error)
+      addErrorMetrics(error)
+    })
+    await wait(250)
   }
 }
 
 ;(async () => {
-  // await fetchAndSaveClashSolutions('328930522d1dd43cd06637029a4daad2f686a05', '21823')
-  // await wait(500)
-  // return
+  setTimeout(() => {
+    _processManually()
+  }, 20 * 60 * 1000)
 
   for (let i = 1; true; i++) {
     process.stdout.write(`[${i}] `)
@@ -223,6 +257,7 @@ async function fetchAndSaveClashSolutions(publicHandle, questionId) {
       }
     } catch (error) {
       console.error('Global error', error)
+      addErrorMetrics(error)
     }
 
     console.log('Waiting 20 seconds..')
