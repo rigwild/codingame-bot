@@ -5,7 +5,8 @@ import fs from 'fs'
 import { ofetch, FetchError } from 'ofetch'
 import { MetricsUtils } from './metrics.mjs'
 
-// Hidden user ID with short format like 5102134
+// User ID in short format like 1234321, you can find it by viewing source of Codingame page
+// `"userId":1234321,"email`:"..."
 const USER_ID = process.env.USER_ID
 // `cgSession` cookie
 const SESSION_TOKEN = process.env.SESSION_TOKEN

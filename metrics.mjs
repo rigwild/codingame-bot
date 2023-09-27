@@ -18,7 +18,7 @@ if (process.env.PROMETHEUS_GATEWAY_ENDPOINT) {
 
   console.log(`\n\n[Metrics] Metrics are enabled, will push them to ${GATEWAY_ENDPOINT} in the background\n\n`)
 
-  const gateway = new Prometheus.Pushgateway(GATEWAY_ENDPOINT, [], register)
+  const gateway = new Prometheus.Pushgateway(GATEWAY_ENDPOINT, {}, register)
 
   register.setDefaultLabels({ app: CLIENT_LABEL })
   Prometheus.collectDefaultMetrics({ register })
