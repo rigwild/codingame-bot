@@ -44,7 +44,7 @@ if (process.env.PROMETHEUS_GATEWAY_ENDPOINT) {
       // Start pushing metrics on a regular basis in the background
       setInterval(() => {
         pushMetrics().catch(err => console.error('[Metrics] Error pushing metrics to gateway', err))
-      }, 5_000)
+      }, 30_000)
     })
 } else {
   console.log(

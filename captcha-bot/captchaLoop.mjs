@@ -65,17 +65,15 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
       ])
 
       const { captchas } = await page.findRecaptchas()
-      if (captchas.length === 0) {
+      if (captchas.length > 0) {
+        MetricsUtils.codingame_bot_captcha_attempt.inc()
+        await page.solveRecaptchas()
+
+        console.log('Captcha solved!')
+        MetricsUtils.codingame_bot_captcha_success.inc()
+      } else {
         console.log('We were not asked to solve a captcha!')
-        break
       }
-
-      MetricsUtils.codingame_bot_captcha_attempt.inc()
-      await page.solveRecaptchas()
-
-      console.log('Captcha solved!')
-      MetricsUtils.codingame_bot_captcha_success.inc()
-      break
     } catch (error) {
       console.error('Failed to solve captcha', error)
     }
