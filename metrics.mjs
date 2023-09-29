@@ -91,4 +91,15 @@ export const MetricsUtils = {
     help: 'How many times a we received a 4XX HTTP error status code',
     registers: [register],
   }),
+
+  codingame_bot_captcha_attempt: new Prometheus.Counter({
+    name: 'codingame_bot_captcha_attempt',
+    help: 'How many times a we tried to solve a captcha',
+    registers: [register],
+  }),
+  codingame_bot_captcha_success: new Prometheus.Counter({
+    name: 'codingame_bot_captcha_success',
+    help: 'How many times a we successfully solved a captcha',
+    registers: [register],
+  }),
 }

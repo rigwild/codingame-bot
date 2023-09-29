@@ -1,0 +1,14 @@
+{
+  "name": "codingame-bot-captcha",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node captchaLoop.mjs"
+  },
+  "dependencies": {
+    "prom-client": "^14.2.0",
+    "puppeteer": "^21.3.6",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-recaptcha": "^3.6.8"
+  }
+}

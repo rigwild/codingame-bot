@@ -1,6 +1,6 @@
 node_modules
 clash-db/*.json
-run.sh
+run*.sh
 _logs.txt
 _public-handles.txt
 _clash-questions.txt
