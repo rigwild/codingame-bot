@@ -9,7 +9,7 @@
 // @ts-check
 import * as Prometheus from 'prom-client'
 
-const CLIENT_LABEL = 'codingame-bot'
+const CLIENT_LABEL = process.env.METRICS_CLIENT_LABEL ? process.env.METRICS_CLIENT_LABEL : 'codingame-bot'
 
 const register = new Prometheus.Registry()
 
