@@ -1,5 +1,6 @@
 // @ts-check
 
+import fs from 'fs'
 import puppeteer from 'puppeteer-extra'
 import RecaptchaPlugin from 'puppeteer-extra-plugin-recaptcha'
 import { MetricsUtils } from '../metrics.mjs'
@@ -71,6 +72,13 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
         console.log('Captcha solved!')
         MetricsUtils.codingame_bot_captcha_success.inc()
+
+        const cookies = await page.cookies()
+        const sessionToken = cookies.find(c => c.name === 'cgSession')?.value
+        if (sessionToken !== SESSION_TOKEN) {
+          console.log('Session token was refreshed, save it in file for other processes')
+          fs.writeFileSync('_session-token.txt', JSON.stringify({ sessionToken, lastUpdated: Date.now() }, null, 2))
+        }
       } else {
         console.log('We were not asked to solve a captcha!')
       }

@@ -9,7 +9,7 @@ import { MetricsUtils } from './metrics.mjs'
 // `"userId":1234321,"email`:"..."
 const USER_ID = process.env.USER_ID
 // `cgSession` cookie
-const SESSION_TOKEN = process.env.SESSION_TOKEN
+let SESSION_TOKEN = process.env.SESSION_TOKEN
 
 if (!SESSION_TOKEN || !USER_ID) {
   console.error('Please set SESSION_TOKEN and USER_ID environment variables')
@@ -42,6 +42,16 @@ const isHttp4xxError = error => {
     return statusCode >= 400 && statusCode < 500
   }
   return false
+}
+
+const readSessionTokenFromFile = () => {
+  if (fs.existsSync('_session-token.txt')) {
+    const json = JSON.parse(fs.readFileSync('_session-token.txt', 'utf-8') || '{ lastUpdated: 0 }')
+    if (json.sessionToken !== SESSION_TOKEN && json.lastUpdated > Date.now() - 1000 * 60 * 60 * 2) {
+      console.log('Updating session token from file')
+      SESSION_TOKEN = json.sessionToken
+    }
+  }
 }
 
 const addErrorMetrics = error => {
@@ -239,6 +249,7 @@ async function _processManually() {
 
   for (let i = 1; true; i++) {
     process.stdout.write(`[${i}] `)
+    readSessionTokenFromFile()
 
     try {
       const publicHandle = await discoverThenJoinClashWaitingRoom()
