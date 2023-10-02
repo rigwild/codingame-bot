@@ -69,6 +69,11 @@ export const MetricsUtils = {
     help: 'How many times we landed on a Clash of Code match with a question that we already had a solution for',
     registers: [register],
   }),
+  codingame_bot_clash_submit: new Prometheus.Counter({
+    name: 'codingame_bot_clash_submit',
+    help: 'How many times we submitted code on a Clash of Code match with a question that we already had a solution for',
+    registers: [register],
+  }),
 
   codingame_bot_clash_solutions_fetch: new Prometheus.Counter({
     name: 'codingame_bot_clash_solutions_fetch',

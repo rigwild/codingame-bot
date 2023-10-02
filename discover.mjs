@@ -96,6 +96,31 @@ const getClashContent = async publicHandle => {
   return data
 }
 
+/**
+ * @param {string} testSessionHandle
+ * @param {string} code
+ * @param {string} programmingLanguageId
+ * @returns
+ */
+const submitClashSolution = async (testSessionHandle, code, programmingLanguageId) => {
+  const data = await ofetch('https://www.codingame.com/services/TestSession/submit', {
+    headers: defaultHeaders,
+    referrer: 'https://www.codingame.com/multiplayer/clashofcode',
+    body: [testSessionHandle, { code, programmingLanguageId }, null],
+    method: 'POST',
+  })
+  return data
+}
+
+const shareMyClashSolution = async publicHandle => {
+  await ofetch('https://www.codingame.com/services/ClashOfCode/shareCodinGamerSolutionByHandle', {
+    headers: defaultHeaders,
+    referrer: `https://www.codingame.com/clashofcode/clash/${publicHandle}`,
+    body: [USER_ID, publicHandle],
+    method: 'POST',
+  })
+}
+
 const getClashValidSolutions = async publicHandle => {
   /** @type {ClashhReport} */
   const reportData = await ofetch('https://www.codingame.com/services/ClashOfCode/findClashReportInfoByHandle', {
@@ -167,6 +192,7 @@ async function fetchAndSaveClashContent(publicHandle) {
     console.log(`Fetching clash content for handle "${publicHandle}"`)
     const clashContent = await getClashContent(publicHandle)
     const questionId = clashContent.currentQuestion.question.id
+    let solutionsCount = 0
     if (!hasClashContent(questionId)) {
       console.log(`Saving clash content for handle "${publicHandle}" and question "${questionId}"`)
       fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashContent, null, 2))
@@ -176,14 +202,39 @@ async function fetchAndSaveClashContent(publicHandle) {
       // Check if we have a solution for it
       /** @type {ClashDetails} */
       const questionData = JSON.parse(fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8'))
-      const solutionsCount = questionData.solutions ? questionData.solutions.length : 0
+      solutionsCount = questionData.solutions ? questionData.solutions.length : 0
       console.log(
         `Clash content for handle "${publicHandle}" and question "${questionId}" is already in database ` +
           `with ${solutionsCount} solutions`
       )
       MetricsUtils.codingame_bot_clash_question_has_solution.inc()
     }
-    return questionId
+    return { testSessionHandle: clashContent.testSessionHandle, questionId, solutionsCount }
+  } catch (error) {
+    console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
+    addErrorMetrics(error)
+  }
+}
+
+async function submitSolution(publicHandle, testSessionHandle, questionId) {
+  try {
+    /** @type {ClashDetails} */
+    const questionData = JSON.parse(
+      fs.existsSync(`clash-db/${questionId}.json`) ? fs.readFileSync(`clash-db/${questionId}.json`, 'utf-8') : '{}'
+    )
+
+    if (!questionData.solutions || questionData.solutions.length === 0) {
+      return
+    }
+
+    const pickedSolution = questionData.solutions[Math.floor(Math.random() * questionData.solutions.length)]
+    await submitClashSolution(testSessionHandle, pickedSolution.code, pickedSolution.programmingLanguageId)
+    console.log(`Submitted solution for handle "${publicHandle}" and question "${questionId}"`)
+    MetricsUtils.codingame_bot_clash_submit.inc()
+    setTimeout(async () => {
+      await shareMyClashSolution(publicHandle)
+      console.log(`Shared solution for handle "${publicHandle}" and question "${questionId}"`)
+    }, 15000)
   } catch (error) {
     console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
     addErrorMetrics(error)
@@ -257,12 +308,18 @@ async function _processManually() {
       if (publicHandle) {
         // Fetch the clash content in 2 minutes, so we are sure the clash started
         setTimeout(async () => {
-          const questionId = await fetchAndSaveClashContent(publicHandle)
+          const clashContent = await fetchAndSaveClashContent(publicHandle)
+          console.log('clashContent', clashContent)
+          if (clashContent) {
+            setTimeout(() => {
+              if (clashContent.solutionsCount > 0) {
+                submitSolution(publicHandle, clashContent.testSessionHandle, clashContent.questionId)
+              }
+            }, Math.random() * 4 * 60 * 1000)
 
-          if (questionId) {
             // Fetch the clash solutions in 17 minutes, so we are sure the clash ended
             setTimeout(() => {
-              fetchAndSaveClashSolutions(publicHandle, questionId)
+              fetchAndSaveClashSolutions(publicHandle, clashContent.questionId)
             }, 17 * 60 * 1000)
           }
         }, 2 * 60 * 1000)

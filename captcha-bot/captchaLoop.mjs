@@ -60,6 +60,14 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
     try {
       await page.goto('https://www.codingame.com/multiplayer/clashofcode', { waitUntil: 'networkidle0' })
+
+      const cookies = await page.cookies()
+      const sessionTokenCookie = cookies.find(c => c.name === 'cgSession')?.value
+      fs.writeFileSync(
+        '_session-token.txt',
+        JSON.stringify({ sessionToken: sessionTokenCookie, lastUpdated: Date.now() }, null, 2)
+      )
+
       await Promise.all([
         page.waitForNavigation({ waitUntil: 'networkidle0' }),
         page.click('[translate="content-details.joinClash"]'),
@@ -72,13 +80,6 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
         console.log('Captcha solved!')
         MetricsUtils.codingame_bot_captcha_success.inc()
-
-        const cookies = await page.cookies()
-        const sessionToken = cookies.find(c => c.name === 'cgSession')?.value
-        if (sessionToken !== SESSION_TOKEN) {
-          console.log('Session token was refreshed, save it in file for other processes')
-          fs.writeFileSync('_session-token.txt', JSON.stringify({ sessionToken, lastUpdated: Date.now() }, null, 2))
-        }
       } else {
         console.log('We were not asked to solve a captcha!')
       }
