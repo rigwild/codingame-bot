@@ -105,7 +105,7 @@ for (const category of categories) {
     })
 }
 
-for (const [topicId, puzzles] of Object.entries(puzzlesByCategory).slice(0, 1)) {
+for (const [topicId, puzzles] of Object.entries(puzzlesByCategory)) {
   for (const puzzleId of puzzles) {
     await fetch('https://www.codingame.com/services/CodingamerPuzzleTopic/markAsLearned', {
       headers: {

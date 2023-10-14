@@ -79,7 +79,7 @@ const joinWaitingClash = async () => {
   })
 }
 
-const getClashContent = async publicHandle => {
+const getClashDetails = async publicHandle => {
   const { handle } = await ofetch('https://www.codingame.com/services/ClashOfCode/startClashTestSession', {
     headers: defaultHeaders,
     referrer: `https://www.codingame.com/clashofcode/clash/${publicHandle}`,
@@ -190,12 +190,13 @@ async function discoverThenJoinClashWaitingRoom() {
 async function fetchAndSaveClashContent(publicHandle) {
   try {
     console.log(`Fetching clash content for handle "${publicHandle}"`)
-    const clashContent = await getClashContent(publicHandle)
-    const questionId = clashContent.currentQuestion.question.id
+    const clashDetails = await getClashDetails(publicHandle)
+    const questionId = clashDetails.currentQuestion.question.id
+    const clashMode = clashDetails.clash.mode
     let solutionsCount = 0
     if (!hasClashContent(questionId)) {
       console.log(`Saving clash content for handle "${publicHandle}" and question "${questionId}"`)
-      fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashContent, null, 2))
+      fs.writeFileSync(`clash-db/${questionId}.json`, JSON.stringify(clashDetails, null, 2))
       fs.appendFileSync('_clash-questions.txt', `${publicHandle}-${questionId}\n`)
       MetricsUtils.codingame_bot_clash_question_save_new.inc()
     } else {
@@ -209,14 +210,20 @@ async function fetchAndSaveClashContent(publicHandle) {
       )
       MetricsUtils.codingame_bot_clash_question_has_solution.inc()
     }
-    return { testSessionHandle: clashContent.testSessionHandle, questionId, solutionsCount }
+    return { clashDetails, questionId, clashMode, solutionsCount }
   } catch (error) {
     console.error(`Error fetching clash content for handle "${publicHandle}"`, error)
     addErrorMetrics(error)
   }
 }
 
-async function submitSolution(publicHandle, testSessionHandle, questionId) {
+/**
+ * @param {string} publicHandle
+ * @param {string} testSessionHandle
+ * @param {number} questionId
+ * @param {ClashDetails['clash']['mode']} clashMode
+ */
+async function submitSolution(publicHandle, testSessionHandle, questionId, clashMode) {
   try {
     /** @type {ClashDetails} */
     const questionData = JSON.parse(
@@ -227,7 +234,10 @@ async function submitSolution(publicHandle, testSessionHandle, questionId) {
       return
     }
 
-    const pickedSolution = questionData.solutions[Math.floor(Math.random() * questionData.solutions.length)]
+    let pickedSolution =
+      clashMode === 'SHORTEST'
+        ? questionData.solutions.reduce((a, b) => (a.code.length < b.code.length ? a : b))
+        : questionData.solutions[Math.floor(Math.random() * questionData.solutions.length)]
     await submitClashSolution(testSessionHandle, pickedSolution.code, pickedSolution.programmingLanguageId)
     console.log(`Submitted solution for handle "${publicHandle}" and question "${questionId}"`)
     MetricsUtils.codingame_bot_clash_submit.inc()
@@ -313,7 +323,12 @@ async function _processManually() {
           if (clashContent) {
             setTimeout(() => {
               if (clashContent.solutionsCount > 0) {
-                submitSolution(publicHandle, clashContent.testSessionHandle, clashContent.questionId)
+                submitSolution(
+                  publicHandle,
+                  clashContent.clashDetails.testSessionHandle,
+                  clashContent.questionId,
+                  clashContent.clashMode
+                )
               }
             }, Math.random() * 4 * 60 * 1000)
 

@@ -14,7 +14,7 @@ interface Clash {
   globalRemainingTime: number
   publicHandle: string
   durationType: string
-  mode: string
+  mode: 'FASTEST' | 'SHORTEST' | 'REVERSE'
   publicClash: boolean
   players: Player[]
   type: string
@@ -57,7 +57,7 @@ interface Question {
     avatar: number
   }
   index: number
-  mode: string
+  mode: never
   title: string
 }
 
